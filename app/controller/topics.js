@@ -79,9 +79,9 @@ module.exports = app => {
         title: { type: 'string', required: true },
         content: { type: 'string', required: true },
         node_name: { type: 'string', required: true }
-      }, ctx.query)
+      }, ctx.request.body)
 
-      ctx.body = await ctx.service.topics.create(ctx.query)
+      ctx.body = await ctx.service.topics.create(ctx.request.body)
     }
   } // /.class=>TopicsController
 } // /.exports

@@ -42,7 +42,7 @@ module.exports = app => {
         topic_id: { type: 'id', required: true }
       }, ctx.params)
 
-      ctx.params = Object.assign(ctx.params, ctx.query)
+      ctx.params = Object.assign(ctx.params, ctx.request.body)
       ctx.body = await ctx.service.replies.create(ctx.params)
     }
   } // /.class=>RepliesController

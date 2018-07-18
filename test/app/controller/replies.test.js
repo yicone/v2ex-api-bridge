@@ -63,7 +63,7 @@ describe('test/app/controller/replies.test.js', () => {
     // 模拟 CSRF token
     app.mockCsrf()
     const r = await request(app.callback())
-      .post('/api/v2/replies/11111111/new?content=test')
+      .post('/api/v2/replies/11111111/new', { content: 'test'})
       .expect(200)
 
     const b = r.body

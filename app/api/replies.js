@@ -43,7 +43,8 @@ module.exports = app => prefix => {
    * @method new
    *
    * @example
-   * POST /api/v2/replies/350205/new?content=${content}
+   * POST /api/v2/replies/350205/new
+   * data: { content: ${content} }
    *
    * Object
    * {

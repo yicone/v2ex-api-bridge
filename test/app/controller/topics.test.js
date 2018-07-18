@@ -129,7 +129,7 @@ describe('test/app/controller/topics.test.js', () => {
     // 模拟 CSRF token
     app.mockCsrf()
     const r = await request(app.callback())
-      .post('/api/v2/topics/new?notitle=title&content=content&node_name=egg')
+      .post('/api/v2/topics/new', { notitle: 'title', content: 'content', node_name: 'egg'})
       .expect(422)
 
     const b = r.body
@@ -142,7 +142,7 @@ describe('test/app/controller/topics.test.js', () => {
     // 模拟 CSRF token
     app.mockCsrf()
     const r = await request(app.callback())
-      .post('/api/v2/topics/new?title=title&content=content&node_name=egg')
+      .post('/api/v2/topics/new', { title: 'title', content: 'content', node_name: 'egg'})
       .expect(200)
 
     const b = r.body

@@ -30,7 +30,7 @@ module.exports = app => {
      */
     async login () {
       const { ctx } = this
-      const { username, password, captcha } = ctx.query
+      const { username, password, captcha } = ctx.request.body
       if (username == null) {
         throw new Error('请传入用户名')
       }
@@ -49,7 +49,7 @@ module.exports = app => {
      */
     async signin () {
       const { ctx } = this
-      ctx.body = await ctx.service.auth.signin(ctx.query)
+      ctx.body = await ctx.service.auth.signin()
     }
   } // /.class=>AuthController
 } // /.exports
