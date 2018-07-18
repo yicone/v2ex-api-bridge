@@ -12,12 +12,24 @@
 
 module.exports = app => prefix => {
   /**
+   *  获取验证码
+   * @method captcha
+   *
+   * @example
+   * GET /api/v2/auth/captcha
+   *
+   * image/png
+   */
+  app.get('v2ex', `${prefix}/auth/captcha`, 'auth.captcha')
+
+
+  /**
    * 登录
    * @method login
    *
    * @example
    * POST /api/v2/auth/login
-   * data: { username: ${username}, password: ${password} }
+   * data: { username: ${username}, password: ${password}, captcha: ${captcha} }
    *
    * {
    *   result: true|false,
@@ -27,7 +39,6 @@ module.exports = app => prefix => {
    *   }
    * }
    */
-  app.get('v2ex', `${prefix}/auth/captcha`, 'auth.captcha')
   app.post('v2ex', `${prefix}/auth/login`, 'auth.login')
   app.get('v2ex', `${prefix}/auth/login`, 'auth.login') // for test
 
