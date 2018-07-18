@@ -17,6 +17,12 @@ module.exports = appInfo => {
 
   const config = {}
 
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  }
+
   config.keys = appInfo.name + '123456'
 
   // V2EX Base Url
