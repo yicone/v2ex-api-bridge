@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Auth.html">Auth</a><ul class='methods'><li data-type='method'><a href="module-Auth.html#~login">login</a></li><li data-type='method'><a href="module-Auth.html#~signin">signin</a></li></ul></li><li><a href="module-Members.html">Members</a><ul class='methods'><li data-type='method'><a href="module-Members.html#~show">show</a></li></ul></li><li><a href="module-Nodes.html">Nodes</a><ul class='methods'><li data-type='method'><a href="module-Nodes.html#~all">all</a></li><li data-type='method'><a href="module-Nodes.html#~show">show</a></li></ul></li><li><a href="module-Profile.html">Profile</a><ul class='methods'><li data-type='method'><a href="module-Profile.html#~all">all</a></li><li data-type='method'><a href="module-Profile.html#~balance">balance</a></li><li data-type='method'><a href="module-Profile.html#~notification">notification</a></li><li data-type='method'><a href="module-Profile.html#~show">show</a></li><li data-type='method'><a href="module-Profile.html#~topics">topics</a></li></ul></li><li><a href="module-Replies.html">Replies</a><ul class='methods'><li data-type='method'><a href="module-Replies.html#~new">new</a></li><li data-type='method'><a href="module-Replies.html#~show">show</a></li></ul></li><li><a href="module-Site.html">Site</a><ul class='methods'><li data-type='method'><a href="module-Site.html#~info">info</a></li><li data-type='method'><a href="module-Site.html#~stats">stats</a></li><li data-type='method'><a href="module-Site.html#~topPlayer">topPlayer</a></li><li data-type='method'><a href="module-Site.html#~topRich">topRich</a></li></ul></li><li><a href="module-Topics.html">Topics</a><ul class='methods'><li data-type='method'><a href="module-Topics.html#~all">all</a></li><li data-type='method'><a href="module-Topics.html#~create">create</a></li><li data-type='method'><a href="module-Topics.html#~hot">hot</a></li><li data-type='method'><a href="module-Topics.html#~latest">latest</a></li><li data-type='method'><a href="module-Topics.html#~show">show</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Auth.html">Auth</a><ul class='methods'><li data-type='method'><a href="module-Auth.html#~captcha">captcha</a></li><li data-type='method'><a href="module-Auth.html#~login">login</a></li><li data-type='method'><a href="module-Auth.html#~signin">signin</a></li></ul></li><li><a href="module-Members.html">Members</a><ul class='methods'><li data-type='method'><a href="module-Members.html#~show">show</a></li></ul></li><li><a href="module-Nodes.html">Nodes</a><ul class='methods'><li data-type='method'><a href="module-Nodes.html#~all">all</a></li><li data-type='method'><a href="module-Nodes.html#~show">show</a></li></ul></li><li><a href="module-Profile.html">Profile</a><ul class='methods'><li data-type='method'><a href="module-Profile.html#~all">all</a></li><li data-type='method'><a href="module-Profile.html#~balance">balance</a></li><li data-type='method'><a href="module-Profile.html#~notification">notification</a></li><li data-type='method'><a href="module-Profile.html#~show">show</a></li><li data-type='method'><a href="module-Profile.html#~topics">topics</a></li></ul></li><li><a href="module-Replies.html">Replies</a><ul class='methods'><li data-type='method'><a href="module-Replies.html#~new">new</a></li><li data-type='method'><a href="module-Replies.html#~show">show</a></li></ul></li><li><a href="module-Site.html">Site</a><ul class='methods'><li data-type='method'><a href="module-Site.html#~info">info</a></li><li data-type='method'><a href="module-Site.html#~stats">stats</a></li><li data-type='method'><a href="module-Site.html#~topPlayer">topPlayer</a></li><li data-type='method'><a href="module-Site.html#~topRich">topRich</a></li></ul></li><li><a href="module-Topics.html">Topics</a><ul class='methods'><li data-type='method'><a href="module-Topics.html#~all">all</a></li><li data-type='method'><a href="module-Topics.html#~create">create</a></li><li data-type='method'><a href="module-Topics.html#~hot">hot</a></li><li data-type='method'><a href="module-Topics.html#~latest">latest</a></li><li data-type='method'><a href="module-Topics.html#~show">show</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -72,7 +72,7 @@
 
     
 
-    <h4 class="name" id="~login"><span class="type-signature">(inner) </span>login<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~captcha"><span class="type-signature">(inner) </span>captcha<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -85,6 +85,97 @@
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="auth.js.html">auth.js</a>, <a href="auth.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    获取验证码
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>GET /api/v2/auth/captcha
+
+image/png</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~login"><span class="type-signature">(inner) </span>login<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="auth.js.html">auth.js</a>, <a href="auth.js.html#line26">line 26</a>
     </li></ul></dd>
     
 
@@ -138,7 +229,7 @@
     <h5>Example</h5>
     
     <pre class="prettyprint"><code>POST /api/v2/auth/login
-data: { username: ${username}, password: ${password} }
+data: { username: ${username}, password: ${password}, captcha: ${captcha} }
 
 {
   result: true|false,
@@ -182,7 +273,7 @@ data: { username: ${username}, password: ${password} }
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="auth.js.html">auth.js</a>, <a href="auth.js.html#line33">line 33</a>
+        <a href="auth.js.html">auth.js</a>, <a href="auth.js.html#line45">line 45</a>
     </li></ul></dd>
     
 
@@ -281,7 +372,7 @@ data: { username: ${username}, password: ${password} }
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sun Apr 02 2017 08:49:56 GMT+0800 (CST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Jul 19 2018 02:46:42 GMT+0800 (CST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

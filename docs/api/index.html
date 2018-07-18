@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Auth.html">Auth</a><ul class='methods'><li data-type='method'><a href="module-Auth.html#~login">login</a></li><li data-type='method'><a href="module-Auth.html#~signin">signin</a></li></ul></li><li><a href="module-Members.html">Members</a><ul class='methods'><li data-type='method'><a href="module-Members.html#~show">show</a></li></ul></li><li><a href="module-Nodes.html">Nodes</a><ul class='methods'><li data-type='method'><a href="module-Nodes.html#~all">all</a></li><li data-type='method'><a href="module-Nodes.html#~show">show</a></li></ul></li><li><a href="module-Profile.html">Profile</a><ul class='methods'><li data-type='method'><a href="module-Profile.html#~all">all</a></li><li data-type='method'><a href="module-Profile.html#~balance">balance</a></li><li data-type='method'><a href="module-Profile.html#~notification">notification</a></li><li data-type='method'><a href="module-Profile.html#~show">show</a></li><li data-type='method'><a href="module-Profile.html#~topics">topics</a></li></ul></li><li><a href="module-Replies.html">Replies</a><ul class='methods'><li data-type='method'><a href="module-Replies.html#~new">new</a></li><li data-type='method'><a href="module-Replies.html#~show">show</a></li></ul></li><li><a href="module-Site.html">Site</a><ul class='methods'><li data-type='method'><a href="module-Site.html#~info">info</a></li><li data-type='method'><a href="module-Site.html#~stats">stats</a></li><li data-type='method'><a href="module-Site.html#~topPlayer">topPlayer</a></li><li data-type='method'><a href="module-Site.html#~topRich">topRich</a></li></ul></li><li><a href="module-Topics.html">Topics</a><ul class='methods'><li data-type='method'><a href="module-Topics.html#~all">all</a></li><li data-type='method'><a href="module-Topics.html#~create">create</a></li><li data-type='method'><a href="module-Topics.html#~hot">hot</a></li><li data-type='method'><a href="module-Topics.html#~latest">latest</a></li><li data-type='method'><a href="module-Topics.html#~show">show</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Auth.html">Auth</a><ul class='methods'><li data-type='method'><a href="module-Auth.html#~captcha">captcha</a></li><li data-type='method'><a href="module-Auth.html#~login">login</a></li><li data-type='method'><a href="module-Auth.html#~signin">signin</a></li></ul></li><li><a href="module-Members.html">Members</a><ul class='methods'><li data-type='method'><a href="module-Members.html#~show">show</a></li></ul></li><li><a href="module-Nodes.html">Nodes</a><ul class='methods'><li data-type='method'><a href="module-Nodes.html#~all">all</a></li><li data-type='method'><a href="module-Nodes.html#~show">show</a></li></ul></li><li><a href="module-Profile.html">Profile</a><ul class='methods'><li data-type='method'><a href="module-Profile.html#~all">all</a></li><li data-type='method'><a href="module-Profile.html#~balance">balance</a></li><li data-type='method'><a href="module-Profile.html#~notification">notification</a></li><li data-type='method'><a href="module-Profile.html#~show">show</a></li><li data-type='method'><a href="module-Profile.html#~topics">topics</a></li></ul></li><li><a href="module-Replies.html">Replies</a><ul class='methods'><li data-type='method'><a href="module-Replies.html#~new">new</a></li><li data-type='method'><a href="module-Replies.html#~show">show</a></li></ul></li><li><a href="module-Site.html">Site</a><ul class='methods'><li data-type='method'><a href="module-Site.html#~info">info</a></li><li data-type='method'><a href="module-Site.html#~stats">stats</a></li><li data-type='method'><a href="module-Site.html#~topPlayer">topPlayer</a></li><li data-type='method'><a href="module-Site.html#~topRich">topRich</a></li></ul></li><li><a href="module-Topics.html">Topics</a><ul class='methods'><li data-type='method'><a href="module-Topics.html#~all">all</a></li><li data-type='method'><a href="module-Topics.html#~create">create</a></li><li data-type='method'><a href="module-Topics.html#~hot">hot</a></li><li data-type='method'><a href="module-Topics.html#~latest">latest</a></li><li data-type='method'><a href="module-Topics.html#~show">show</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -69,14 +69,13 @@
   </a>
 </p>
 
-<h2>Intro</h2><p><code>V2EX API Bridge</code>: 提供论坛公开API的封装和私有API的挖掘实现，目前已支持 <code>登录，签到，发帖，回帖，财富，消息</code> 等非官方API功能.<br>[Demo:] (https://http://indexxuan.jsonce.com:7001/api/v2/login?username=indexxuantest2&amp;password=justtest)
-目前在线demo只开放登录和签到功能，且开启GET方式请求，demo服务器不会收集你的账号密码，但相信你不会尝试的...(微笑)</p>
+<h2>Intro</h2><p><code>V2EX API Bridge</code>: 提供论坛公开API的封装和私有API的挖掘实现，目前已支持 <code>登录，签到，发帖，回帖，账户，消息</code> 等非官方API功能.  </p>
 <ul>
 <li><p>see <code>app/router.js</code> to find full router config &amp; demo api links</p>
 </li>
 <li><p>Thanks for：</p>
 </li>
-<li>[official API] (https://www.v2ex.com/p/7v9TEc53)</li>
+<li>[official API] (https://<a href="http://www.v2ex.com/p/7v9TEc53">www.v2ex.com/p/7v9TEc53</a>)</li>
 <li>[V2EX-API] (https://github.com/djyde/V2EX-API)</li>
 </ul>
 <h2>Development</h2><ul>
@@ -87,10 +86,14 @@
 <pre class="prettyprint source lang-bash"><code>$ npm install
 $ npm run dev</code></pre><h2>Features</h2><ul>
 <li>✔︎ Full RESTful Style APIs Wrapped</li>
-<li>✔︎ 40+ Case, 100%+ Unit Test(<code>BDD</code>)</li>
+<li>✔︎ 40+ Case, 95%+ Unit Test(<code>BDD</code>) with Docs</li>
 <li>✔︎ Server Hot Reload in Dev</li>
 <li>✔︎ pre-commit hook to run codecov &amp; build jsdoc, host in Github Pages @see <code>package.json#pre-commit</code></li>
 <li>✔︎ CI Support</li>
+</ul>
+<h2>Docs</h2><ul>
+<li>✔︎ Public API Docs  - [go] (https://indexxuan.github.io/v2ex-api-bridge/api/index.html)</li>
+<li>✔︎ Project Dev Docs - [go] (https://indexxuan.github.io/v2ex-api-bridge/project/index.html)</li>
 </ul>
 <h2>Unit Test</h2><ul>
 <li><code>mocha</code>, <code>thunk-mocha</code>, <code>power-assert</code>, <code>istanbul</code> is build-in to <code>egg-bin</code>, so you can just use it.</li>
@@ -105,12 +108,13 @@ $ npm run dev</code></pre><h2>Features</h2><ul>
 <li>Use <code>npm run cov</code> to run code coverage</li>
 </ul>
 <h2>Todo</h2><ul>
-<li>make <code>pwa</code> using the APIs</li>
 <li>parse the <code>response html</code> to get more private APIs</li>
-<li>improve <code>docs</code></li>
+<li>improve <code>docs</code> and 'codecov'</li>
+<li>make <code>pwa</code> using the APIs</li>
+<li>make it more <code>egg best practice</code></li>
 </ul>
 <h2>Links</h2><ul>
-<li>[V2EX] (https://www.v2ex.com/)</li>
+<li>[V2EX] (https://<a href="http://www.v2ex.com/">www.v2ex.com/</a>)</li>
 <li>[egg] (https://github.com/eggjs/egg)</li>
 <li>[egg-bin] (https://github.com/eggjs/egg-bin)</li>
 <li>[mocha] (http://mochajs.org)</li>
@@ -133,7 +137,7 @@ $ npm run dev</code></pre><h2>Features</h2><ul>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sun Apr 02 2017 08:49:56 GMT+0800 (CST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Jul 19 2018 02:46:42 GMT+0800 (CST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
