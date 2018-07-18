@@ -27,6 +27,7 @@ module.exports = app => prefix => {
    *   }
    * }
    */
+  app.get('v2ex', `${prefix}/auth/captcha`, 'auth.captcha')
   app.post('v2ex', `${prefix}/auth/login`, 'auth.login')
   app.get('v2ex', `${prefix}/auth/login`, 'auth.login') // for test
 

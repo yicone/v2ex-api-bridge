@@ -28,10 +28,12 @@ module.exports = app => {
       this.homeUrl = 'https://www.v2ex.com/'
       // login相关
       this.loginUrl = 'https://www.v2ex.com/signin'
-      this.sessionCookieStr = '' // 未登录的sessionid, 供 `login` 接口放在请求Headers里的 `Set-Cookie` 项中使用
-      this.userField = '' // 用户名 输入框埋下的随机表单域
-      this.passField = '' // 密码   输入框埋下的随机表单域
-      this.once = '12345'      // input[type="hidden"][name="once"]的随机令牌值(目前是5位数字)
+
+      this.ctx.session.sessionCookieStr = '' // 未登录的sessionid, 供 `login` 接口放在请求Headers里的 `Set-Cookie` 项中使用
+      this.ctx.session.userField = '' // 用户名 输入框埋下的随机表单域
+      this.ctx.session.passField = '' // 密码   输入框埋下的随机表单域
+      this.ctx.session.once = '12345'      // input[type="hidden"][name="once"]的随机令牌值(目前是5位数字)
+
       // signin相关
       this.signinUrl = 'https://www.v2ex.com/mission/daily'
       this.noAuth = false // 是否有权限签到 
@@ -81,13 +83,14 @@ module.exports = app => {
       const content = result.data
       // get fileds
       const keyRe = /class="sl" name="([0-9A-Za-z]{64})"/g
-      this.userField = keyRe.exec(content)[1]
-      this.passField = keyRe.exec(content)[1]
+      this.ctx.session.userField = keyRe.exec(content)[1]
+      this.ctx.session.passField = keyRe.exec(content)[1]
+      this.ctx.session.captchaField = keyRe.exec(content)[1]
       // get once
       const onceRe = /value="(\d+)" name="once"/
-      this.once = onceRe.exec(content)[1]
+      this.ctx.session.once = onceRe.exec(content)[1]
       // get string session cookie
-      this.sessionCookieStr = result.headers['set-cookie'][0]
+      this.ctx.session.sessionCookieStr = result.headers['set-cookie'][0]
     }
 
     /**
@@ -105,24 +108,35 @@ module.exports = app => {
       return this.getLoginFields(result)
     }
 
+    async captcha () {
+      // @step1 进入登录页，获取页面隐藏登录域以及once的值
+      await this.enterLoginPage()
+      const captchaUrl = `https://www.v2ex.com/_captcha?once=${this.ctx.session.once}`
+      const opts = {
+        method: 'GET',
+        // contentType: 'image/png',
+        headers: Object.assign({}, this.ctx.commonHeaders, { Cookie: this.ctx.session.sessionCookieStr })
+      }
+      const result = await this.request(captchaUrl, opts)
+      return result.data
+    }
+
     /**
      * login获取权限签名主方法
      * @method
      * @param {String} username - 用户名
      * @param {String} password - 密码 
      */
-    async login ({username, password}) {
-      // @step1 进入登录页，获取页面隐藏登录域以及once的值
-      await this.enterLoginPage()
-
+    async login ({username, password, captcha}) {
       // @step2 设置请求参数
       const opts = {
         method: 'POST',
-        headers: Object.assign({}, this.ctx.commonHeaders, { Cookie: this.sessionCookieStr }),
+        headers: Object.assign({}, this.ctx.commonHeaders, { Cookie: this.ctx.session.sessionCookieStr }),
         data: {
-          [this.userField]: username,
-          [this.passField]: password,
-          "once": this.once
+          [this.ctx.session.userField]: username,
+          [this.ctx.session.passField]: password,
+          [this.ctx.session.captchaField]: captcha,
+          "once": this.ctx.session.once
         }
       }
 
@@ -169,14 +183,14 @@ module.exports = app => {
      * @param {String} content - 签到页html字符串
      */
     getSigninOnce (content) {
-      // update this.once
+      // update this.ctx.session.once
       const onceRe = /redeem\?once=(\d+)/
       const onces = onceRe.exec(content)
       /* istanbul ignore next */
       if (onces && onces[1]) {
-        this.once = onces[1]
+        this.ctx.session.once = onces[1]
       } else {
-        this.once = null
+        this.ctx.session.once = null
         this.hasSignin = true // 已经签到过了才获取不到once
       }
     }
@@ -230,13 +244,13 @@ module.exports = app => {
 
       // @step5 获取请求结果，会302
       /* istanbul ignore else */
-      if (this.once === null) {
+      if (this.ctx.session.once === null) {
         this.ctx.logger.info('未获取到once值,可能是已经签到过了!')
       }
       const result = await this.request(`${this.signinUrl}/redeem`, Object.assign(opts, { 
         headers: headers,
         data: { 
-          'once': this.once
+          'once': this.ctx.session.once
         }
       }))
 

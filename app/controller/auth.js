@@ -16,20 +16,31 @@ module.exports = app => {
    * @extends app.Controller
    */
   return class AuthController extends app.Controller {
+    async captcha () {
+      const { ctx } = this
+      ctx.type = 'png'
+      const body = await ctx.service.auth.captcha()
+      ctx.length = Buffer.byteLength(body);
+      ctx.body = body
+    }
+
     /**
      * 登录
      * @returns {Object}
      */
     async login () {
       const { ctx } = this
-      const { username, password } = ctx.query
+      const { username, password, captcha } = ctx.query
       if (username == null) {
         throw new Error('请传入用户名')
       }
       if (password == null) {
         throw new Error('请传入密码')
       }
-      ctx.body = await ctx.service.auth.login({username, password})
+      if (captcha == null) {
+        throw new Error('请传入验证码')
+      }
+      ctx.body = await ctx.service.auth.login({username, password, captcha})
     }
 
     /**

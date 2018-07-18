@@ -24,9 +24,18 @@ describe('test/app/controller/members.test.js', () => {
   // 每一个测试过后都重置mock app
   afterEach(mock.restore)
 
-  it('1 should login success', async () => {
+  it('should got captcha', async () => {
+    const r1 = await request(app.callback())
+      .get('/api/v2/auth/captcha')
+      .expect(200)
+
+    assert(Buffer.isBuffer(r1.body))
+    console.log(r1.body.toString('base64'))
+  })
+
+  it.only('1 should login success', async () => {
     const r = await request(app.callback())
-      .get('/api/v2/auth/login?username=indexxuantest2&password=justtest')
+      .get('/api/v2/auth/login?username=indexxuantest2&password=justtest&captcha=suaecqcs')
       .expect(200)
 
     const item = r.body
