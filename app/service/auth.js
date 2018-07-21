@@ -29,11 +29,6 @@ module.exports = app => {
       // login相关
       this.loginUrl = 'https://www.v2ex.com/signin'
 
-      this.ctx.session.sessionCookieStr = '' // 未登录的sessionid, 供 `login` 接口放在请求Headers里的 `Set-Cookie` 项中使用
-      this.ctx.session.userField = '' // 用户名 输入框埋下的随机表单域
-      this.ctx.session.passField = '' // 密码   输入框埋下的随机表单域
-      this.ctx.session.once = '12345'      // input[type="hidden"][name="once"]的随机令牌值(目前是5位数字)
-
       // signin相关
       this.signinUrl = 'https://www.v2ex.com/mission/daily'
       this.noAuth = false // 是否有权限签到 
@@ -50,6 +45,7 @@ module.exports = app => {
     async request (url, opts) {
       opts = Object.assign({
         timeout: [ '30s', '30s' ],
+        enableProxy: true,
       }, opts)
 
       return await this.ctx.curl(url, opts)
@@ -111,11 +107,13 @@ module.exports = app => {
     async captcha () {
       // @step1 进入登录页，获取页面隐藏登录域以及once的值
       await this.enterLoginPage()
-      const captchaUrl = `https://www.v2ex.com/_captcha?once=${this.ctx.session.once}`
+      const once = this.ctx.session.once || '12345'
+      const captchaUrl = `https://www.v2ex.com/_captcha?once=${once}`
       const opts = {
         method: 'GET',
         // contentType: 'image/png',
-        headers: Object.assign({}, this.ctx.commonHeaders, { Cookie: this.ctx.session.sessionCookieStr })
+        headers: Object.assign({}, this.ctx.commonHeaders, { 
+          Cookie: this.ctx.session.sessionCookieStr || ''})
       }
       const result = await this.request(captchaUrl, opts)
       return result.data
@@ -131,23 +129,30 @@ module.exports = app => {
       // @step2 设置请求参数
       const opts = {
         method: 'POST',
-        headers: Object.assign({}, this.ctx.commonHeaders, { Cookie: this.ctx.session.sessionCookieStr }),
+        headers: Object.assign({}, this.ctx.commonHeaders, { 
+          Referer: 'https://www.v2ex.com/signin',
+          Cookie: this.ctx.session.sessionCookieStr }),
         data: {
           [this.ctx.session.userField]: username,
           [this.ctx.session.passField]: password,
           [this.ctx.session.captchaField]: captcha,
-          "once": this.ctx.session.once
+          "once": this.ctx.session.once,
+          'next': '/'
         }
       }
 
+      console.warn('opts', opts)
+
       // @step3 发起请求
       const result = await this.request(this.loginUrl, opts)
+      console.log('login result', result)
 
       // @step4 更新session并设置在客户端
       await this.enterHomePage()
       
       // @step5 解析获取到的cookies
       const cs = setCookieParser(result)
+      console.warn('cs', cs)
        
       // @step6 判断是否登录成功并种下客户端cookies
       let success = false
@@ -170,7 +175,7 @@ module.exports = app => {
       // @step7 设置API返回结果
       return {
         result: success,
-        msg: success ? 'ok' : '登录失败，请确认用户名密码无误',
+        msg: success ? 'ok' : '登录失败',
         data: {
           username: username
         }
