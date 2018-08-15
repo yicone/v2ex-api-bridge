@@ -99,7 +99,7 @@ module.exports = app => prefix => {
    * @param {Number|String} id - topic_id
    *
    * @example
-   * GET /api/v2/topics/show?id=${id}
+   * GET /api/v2/topics/${id}
    *
    * Object
    * {
@@ -142,9 +142,9 @@ module.exports = app => prefix => {
    * @param {String} value - topics类型的值
    *
    * @example
-   * GET /api/v2/topics/node_id/249
-   * GET /api/v2/topics/node_name/vim
-   * GET /api/v2/topics/username/IndexXuan
+   * GET /api/v2/topics/all/node_id/249
+   * GET /api/v2/topics/all/node_name/vim
+   * GET /api/v2/topics/all/username/IndexXuan
    *
    * Array<Object>
    * [{
