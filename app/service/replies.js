@@ -60,7 +60,7 @@ module.exports = app => {
       const result = await this.request('show', {
         data: params,
       });
-      var data = this._paginate(result.data, param.page, params.pagesize);
+      var data = this._paginate(result.data, params.page, params.pagesize);
       return data;
     }
 
